@@ -1,0 +1,353 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============ Dark mode global overrides ============
+   The app's pages use literal Tailwind colors (bg-[#f6f8f3], bg-white, etc.)
+   without dark: variants. These rules flip those page-level surfaces when
+   <html> has the .dark class so the toggle has visible effect everywhere
+   without editing every page. Add real dark: variants per component later. */
+
+html.dark {
+  background-color: #0a1410;
+  color-scheme: dark;
+}
+
+html.dark main {
+  background-color: #0a1410 !important;
+  color: #e2e8f0;
+}
+
+html.dark .bg-\[\#f6f8f3\] {
+  background-color: #0a1410 !important;
+}
+
+html.dark .bg-white {
+  background-color: #14201a !important;
+  color: #e2e8f0;
+}
+
+html.dark .bg-white\/90,
+html.dark .bg-white\/95,
+html.dark .bg-white\/60 {
+  background-color: rgba(20, 32, 26, 0.92) !important;
+  color: #e2e8f0;
+}
+
+html.dark .bg-slate-50 {
+  background-color: #1a2620 !important;
+}
+
+html.dark .bg-slate-100 {
+  background-color: #1f2c25 !important;
+}
+
+html.dark .bg-emerald-50 {
+  background-color: rgba(5, 46, 22, 0.6) !important;
+}
+
+html.dark .bg-cyan-100 {
+  background-color: rgba(8, 47, 73, 0.6) !important;
+}
+
+html.dark .text-\[\#10291d\] {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-600,
+html.dark .text-slate-500 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-400,
+html.dark .text-slate-300 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-gray-500 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .ring-slate-200,
+html.dark .ring-slate-200\/70 {
+  --tw-ring-color: rgba(71, 85, 105, 0.4) !important;
+}
+
+html.dark .border-slate-200,
+html.dark .border-slate-100,
+html.dark .border-gray-200 {
+  border-color: rgba(71, 85, 105, 0.4) !important;
+}
+
+html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(71, 85, 105, 0.3) !important;
+}
+
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: #1a2620;
+  color: #e2e8f0;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b;
+}
+
+html.dark .shadow-sm,
+html.dark .shadow-lg,
+html.dark .shadow-xl {
+  --tw-shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Accent text colors — dark hues become unreadable on dark backgrounds.
+   Brighten them so badges, prices, and labels stay legible. */
+html.dark .text-emerald-700,
+html.dark .text-emerald-600 {
+  color: #34d399 !important;
+}
+
+html.dark .text-emerald-400 {
+  color: #6ee7b7 !important;
+}
+
+html.dark .text-blue-600,
+html.dark .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+html.dark .text-cyan-400 {
+  color: #67e8f9 !important;
+}
+
+html.dark .text-amber-700,
+html.dark .text-amber-600 {
+  color: #fbbf24 !important;
+}
+
+html.dark .text-yellow-500,
+html.dark .text-yellow-600,
+html.dark .text-yellow-700 {
+  color: #fbbf24 !important;
+}
+
+html.dark .text-red-500,
+html.dark .text-red-600,
+html.dark .text-red-700 {
+  color: #f87171 !important;
+}
+
+html.dark .text-rose-500,
+html.dark .text-rose-600 {
+  color: #fb7185 !important;
+}
+
+html.dark .text-pink-400,
+html.dark .text-pink-500 {
+  color: #f472b6 !important;
+}
+
+html.dark .text-orange-500 {
+  color: #fb923c !important;
+}
+
+html.dark .text-white\/80,
+html.dark .text-white\/90 {
+  color: rgba(241, 245, 249, 0.95) !important;
+}
+
+/* Badge / chip backgrounds */
+html.dark .bg-emerald-100 {
+  background-color: rgba(5, 46, 22, 0.55) !important;
+}
+
+html.dark .bg-amber-100,
+html.dark .bg-amber-50 {
+  background-color: rgba(120, 53, 15, 0.45) !important;
+}
+
+html.dark .bg-red-50 {
+  background-color: rgba(127, 29, 29, 0.35) !important;
+}
+
+html.dark .bg-pink-50 {
+  background-color: rgba(131, 24, 67, 0.35) !important;
+}
+
+html.dark .bg-yellow-100,
+html.dark .bg-yellow-50 {
+  background-color: rgba(120, 100, 15, 0.4) !important;
+}
+
+/* Ring + border accents */
+html.dark .ring-emerald-100,
+html.dark .ring-emerald-200 {
+  --tw-ring-color: rgba(52, 211, 153, 0.3) !important;
+}
+
+html.dark .border-emerald-100,
+html.dark .border-emerald-200 {
+  border-color: rgba(52, 211, 153, 0.3) !important;
+}
+
+html.dark .border-emerald-600 {
+  border-color: #34d399 !important;
+}
+
+/* Light pastel hero gradients used on Menu, Section, and other pages.
+   Replace with a dark green/teal gradient so the hero blends with dark mode. */
+html.dark .bg-gradient-to-br.from-\[\#eefaf3\] {
+  background-image: linear-gradient(
+    to bottom right,
+    #0a1410,
+    #0d1f17,
+    #102825
+  ) !important;
+}
+
+/* HomePage hero headline uses a custom dark-green hex (not text-[#10291d]),
+   which is invisible on the dark hero. Brighten it. */
+html.dark .text-\[\#112b1f\] {
+  color: #e2e8f0 !important;
+}
+
+/* Light-mint surfaces placed directly on a <section>/<div> (not <main>):
+   HomePage's "how it works" band (bg-[#e8f7f1]) and the auth / dietary-
+   preferences page backgrounds (bg-[#e7f7f6]) that aren't on <main>. */
+html.dark .bg-\[\#e8f7f1\],
+html.dark .bg-\[\#e7f7f6\] {
+  background-color: #0d1f17 !important;
+}
+
+/* Misc light surfaces: navbar dropdown hover rows, thin divider lines */
+html.dark .hover\:bg-gray-100:hover {
+  background-color: #1f2c25 !important;
+}
+
+html.dark .bg-gray-100 {
+  background-color: #1a2620 !important;
+}
+
+html.dark .bg-slate-200 {
+  background-color: rgba(71, 85, 105, 0.5) !important;
+}
+
+/* Disabled "subscribe" button keeps a pale gradient — mute it in dark mode */
+html.dark .from-emerald-300.to-cyan-200 {
+  background-image: linear-gradient(to right, #1f2c25, #1a2a2c) !important;
+}
+
+/* Form labels and form text */
+html.dark label {
+  color: #cbd5e1;
+}
+
+/* Hide browser default password reveal icon */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+input::-webkit-credentials-auto-fill-button,
+input::-webkit-caps-lock-indicator,
+input::-webkit-textfield-decoration-container {
+  display: none !important;
+  visibility: hidden;
+}
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --code-bg: #f4f3ec;
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+  }
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+p {
+  margin: 0;
+}
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
