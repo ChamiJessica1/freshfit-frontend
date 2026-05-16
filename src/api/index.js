@@ -5,21 +5,8 @@
 // This means the same build works both locally and on the public URL.
 // Token + current user are stored in localStorage.
 
-const PROD_API = "https://freshfit-backend-production.up.railway.app/api";
-const LOCAL_API = "http://localhost:5000/api";
-
-const resolveApiBase = () => {
-  if (import.meta.env.VITE_API_BASE)
-    return import.meta.env.VITE_API_BASE;
-  if (typeof window !== "undefined") {
-    const host = window.location.hostname;
-    if (host === "localhost" || host === "127.0.0.1") return LOCAL_API;
-  }
-  return PROD_API;
-};
-
- const API_BASE = resolveApiBase();
-//const API_BASE = PROD_API;
+const API_BASE =
+  import.meta.env.VITE_API_BASE ||"http://localhost:5000/api";
 
 
 // ---------- auth state ----------
