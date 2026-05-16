@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Flame, Heart, Plus, Star, Check } from "lucide-react";
-import { apiAddToCart, isAuthed } from "../api";
+import { apiAddToCart,apiAddFavorite, isAuthed } from "../api";
 
 export default function MenuCard({ item }) {
   const navigate = useNavigate();
   const [added, setAdded] = useState(false);
   const [error, setError] = useState("");
+  const [favoriteAdded, setFavoriteAdded] = useState(false);
 
   const addToCart = async () => {
     if (!isAuthed()) {
@@ -25,6 +26,22 @@ export default function MenuCard({ item }) {
       setTimeout(() => setError(""), 2500);
     }
   };
+  const addToFavorites = async () => {
+    if (!isAuthed()) {
+      navigate("/login");
+      return;
+    }
+
+    setError("");
+    try {
+      await apiAddFavorite(item.id);
+      setFavoriteAdded(true);
+      setTimeout(() => setFavoriteAdded(false), 1500);
+    } catch (err) {
+      setError(err.message);
+      setTimeout(() => setError(""), 2500); 
+    }
+  }
 
   return (
     <div className="group overflow-hidden rounded-[30px] bg-white shadow-[0_18px_45px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(15,23,42,0.14)]">
@@ -41,8 +58,10 @@ export default function MenuCard({ item }) {
           {item.section}
         </span>
 
-        <button className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-slate-600 shadow-md transition hover:scale-110 hover:text-rose-500">
-          <Heart size={21} />
+        <button
+          onClick={addToFavorites}
+          className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-slate-600 shadow-md transition hover:scale-110 hover:text-rose-500">
+          <Heart size={21} className={favoriteAdded?"fill-rose-500": ""}/>
         </button>
 
         <div className="absolute bottom-5 left-5 flex items-center gap-2 rounded-full bg-black/40 px-4 py-2 text-sm font-bold text-white backdrop-blur">

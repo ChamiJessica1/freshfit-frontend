@@ -2,15 +2,15 @@
 // API base resolution order:
 //   1. VITE_API_BASE if set in env (explicit override)
 //   2. http://localhost:5000/api when the app itself is served from localhost
-//   3. https://fresh-fit-backend.onrender.com/api (deployed Vercel build)
 // This means the same build works both locally and on the public URL.
 // Token + current user are stored in localStorage.
 
-//const PROD_API = "https://fresh-fit-backend.onrender.com/api";
+const PROD_API = "https://freshfit-backend-production.up.railway.app/api";
 const LOCAL_API = "http://localhost:5000/api";
 
 const resolveApiBase = () => {
-  if (import.meta.env.VITE_API_BASE) return import.meta.env.VITE_API_BASE;
+  if (import.meta.env.VITE_API_BASE)
+    return import.meta.env.VITE_API_BASE;
   if (typeof window !== "undefined") {
     const host = window.location.hostname;
     if (host === "localhost" || host === "127.0.0.1") return LOCAL_API;
@@ -18,8 +18,9 @@ const resolveApiBase = () => {
   return PROD_API;
 };
 
-//const API_BASE = resolveApiBase();
-const API_BASE = LOCAL_API; 
+ const API_BASE = resolveApiBase();
+//const API_BASE = PROD_API;
+
 
 // ---------- auth state ----------
 const TOKEN_KEY = "freshfit_token";
